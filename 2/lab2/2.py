@@ -12,7 +12,6 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         # остальное без изменений
         self.setupUi(self)
         self.setFixedSize(412,480)
-        self.tasks = []
         self.pushButton.clicked.connect(self.taskHandler)
     def taskHandler(self):
         date = self.calendarWidget.selectedDate().toPyDate()

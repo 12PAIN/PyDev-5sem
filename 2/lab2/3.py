@@ -12,7 +12,6 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         # остальное без изменений
         self.setupUi(self)
         self.setFixedSize(268,390)
-        self.tasks = []
         self.pushButton.clicked.connect(self.contactAdd)
 
     def contactAdd(self):
