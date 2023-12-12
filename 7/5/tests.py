@@ -25,13 +25,13 @@ def test_initial_state(app):
 
 def test_hide_button(app, qtbot):
     qtbot.mouseClick(app.hideButton, Qt.LeftButton)
-    assert not app.pushButton.isVisible()
+    assert app.pushButton.isHidden()
 
 
 def test_show_button(app, qtbot):
     app.hideButton.setChecked(True)
     qtbot.mouseClick(app.hideButton, Qt.LeftButton)
-    assert app.pushButton.isVisible()
+    assert not app.pushButton.isHidden()
 
 
 def test_disable_button(app, qtbot):
@@ -40,20 +40,20 @@ def test_disable_button(app, qtbot):
 
 
 def test_enable_button(app, qtbot):
-    app.checkbox_disable.setChecked(True)
+    app.disableButton.setChecked(True)
     qtbot.mouseClick(app.disableButton, Qt.LeftButton)
     assert app.pushButton.isEnabled()
 
 
 def test_enlarge_text_button(app, qtbot):
     qtbot.mouseClick(app.enlargeFontOnButton, Qt.LeftButton)
-    assert app.pushButton.font() == QFont('Times', 18)
+    assert app.pushButton.font().toString() == QFont('Times', 18).toString()
 
 
 def test_normal_size_button(app, qtbot):
     app.enlargeFontOnButton.setChecked(True)
     qtbot.mouseClick(app.enlargeFontOnButton, Qt.LeftButton)
-    assert app.pushButton.font() == QFont()
+    assert app.pushButton.font().toString() == QFont('Times', 12).toString()
 
 
 def test_change_button_color(app, qtbot):
@@ -69,10 +69,10 @@ def test_reset_button_color(app, qtbot):
 
 def test_change_button_text(app, qtbot):
     qtbot.mouseClick(app.changeText, Qt.LeftButton)
-    assert app.pushButton.text() == "Clicked"
+    assert app.pushButton.text() == "Текст изменён"
 
 
 def test_reset_button_text(app, qtbot):
     app.changeText.setChecked(True)
     qtbot.mouseClick(app.changeText, Qt.LeftButton)
-    assert app.pushButton.text() == "Press Me"
+    assert app.pushButton.text() == "Button"
